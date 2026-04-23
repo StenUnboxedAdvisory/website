@@ -57,10 +57,10 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .brand-logo{
-  height: 34px;   /* pas aan: 28-40px is meestal mooi */
+  height: 34px;   /* pas aan: 28–40px is meestal mooi */
   width: auto;    /* voorkomt vervorming */
   display: block; /* voorkomt rare whitespace */
-  border-radius: 10px; /* alleen als je logo
+  border-radius: 10px; /* optioneel: alleen als je afgeronde hoeken wilt */
 }
 
 nav{
