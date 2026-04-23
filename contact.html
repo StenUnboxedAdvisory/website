@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contact — neem vrijblijvend contact op met Unboxed Advisory." />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Unboxed Advisory — Contact</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="index.html" aria-label="Naar home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Unboxed Advisory</span>
+      </a>
+
+      <nav aria-label="Hoofdnavigatie">
+        <a class="navlink" data-nav href="index.html">Home</a>
+        <a class="navlink" data-nav href="diensten.html">Diensten & aanpak</a>
+        <a class="navlink" data-nav href="contact.html">Contact</a>
+      </nav>
+
+      <a class="navbtn" href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Contact intro">
+      <span class="pill"><span class="dot" aria-hidden="true"></span> Vrijblijvend • Snel • Duidelijk</span>
+      <h1 class="headline">Contact</h1>
+      <p class="subhead">
+        Wilt u verkennen hoe wij kunnen ondersteunen bij een digitaal vraagstuk of veranderinitiatief?
+        Neem vrijblijvend contact op via het formulier.
+      </p>
+    </section>
+
+    <section class="section" aria-label="Contact blokken">
+      <div class="contact">
+        <div class="panel">
+          <h3>Contactgegevens</h3>
+          <p style="margin:0; color: var(--muted); line-height:1.65; font-size:14px;">
+            <strong>Unboxed Advisory</strong><br>
+            E-mail: <a href="mailto:info@unboxedadvisory.nl">info@unboxedadvisory.nl</a><br>
+            Locatie: <span style="color: var(--subtle);">Nederland</span>
+          </p>
+          <p class="hint">
+            Liever telefoon of adres tonen? Kan, maar is niet verplicht.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Stuur een bericht</h3>
+
+          <div class="alert success" id="successMsg" role="status" aria-live="polite">
+            Dank! Uw e‑mailprogramma is geopend. Als dat niet werkt, mail naar info@unboxedadvisory.nl.
+          </div>
+          <div class="alert error" id="errorMsg" role="status" aria-live="polite">
+            Oeps, er ging iets mis. Kopieer uw bericht en mail het naar info@unboxedadvisory.nl.
+          </div>
+
+          <form id="contactForm" novalidate>
+            <label>
+              Naam
+              <input name="name" type="text" autocomplete="name" placeholder="Uw naam" required />
+            </label>
+
+            <label>
+              E‑mail
+              <input name="email" type="email" autocomplete="email" placeholder="uw@emailadres.nl" required />
+            </label>
+
+            <label>
+              Bericht
+              <textarea name="message" placeholder="Waar kunnen wij mee helpen?" required></textarea>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Verstuur bericht <small>↗</small></button>
+            <p class="hint">
+              Dit formulier gebruikt uw e‑mailprogramma (geen opslag op de website). Later kan dit worden vervangen door een “echt” webformulier.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <span>© <span id="year"></span> Unboxed Advisory. Alle rechten voorbehouden.</span>
+        <span><a class="navlink" href="diensten.html">Diensten & aanpak</a></span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
