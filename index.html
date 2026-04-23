@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Wij adviseren organisaties over digitale productontwikkeling, platformstrategie en IT-architectuur. Consultancy en interim management in complexe en gereguleerde omgevingen." />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Unboxed Advisory — Digitale productontwikkeling & consultancy</title>
+
+  <!-- Simple, modern typography (system fonts; no external dependencies) -->
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --subtle: rgba(255,255,255,.58);
+      --line: rgba(255,255,255,.12);
+      --brand: #7c3aed; /* purple */
+      --brand2: #22c55e; /* green */
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(900px 500px at 95% 10%, rgba(34,197,94,.22), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(59,130,246,.18), transparent 60%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .wrap{ width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .2px;
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width: 9px; height: 9px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), #60a5fa);
+      box-shadow: 0 0 0 6px rgba(124,58,237,.15);
+    }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: linear-gradient(to bottom, rgba(11,18,32,.85), rgba(11,18,32,.55));
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+    .logo{
+      width: 34px; height: 34px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.55));
+      box-shadow: 0 14px 30px rgba(124,58,237,.22);
+    }
+    nav{
+      display:flex; align-items:center; gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .navlink{
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      border: 1px solid transparent;
+    }
+    .navlink:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .navbtn{
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    .navbtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 66px 0 30px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 26px;
+      align-items: start;
+    }
+    .headline{
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.06;
+      margin: 14px 0 14px;
+      letter-spacing: -0.6px;
+    }
+    .subhead{
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 0 22px;
+    }
+    .cta-row{
+      display:flex; gap: 12px; flex-wrap: wrap;
+      margin: 18px 0 10px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap: 10px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 650;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
+    .btn-primary{
+      border-color: rgba(124,58,237,.55);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(59,130,246,.70));
+    }
+    .btn-primary:hover{
+      border-color: rgba(124,58,237,.75);
+      background: linear-gradient(135deg, rgba(124,58,237,1), rgba(59,130,246,.85));
+    }
+    .btn small{ opacity: .85; font-weight: 600; }
+
+    /* Side card */
+    .side{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .side h3{
+      margin: 2px 0 10px;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .side p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .kpi .box{
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 12px;
+    }
+    .kpi .num{
+      font-size: 18px;
+      font-weight: 780;
+      margin: 0 0 3px;
+    }
+    .kpi .lab{
+      margin: 0;
+      color: var(--subtle);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    /* Section */
+    section{ padding: 42px 0; }
+    .section-title{
+      font-size: 24px;
+      margin: 0 0 10px;
+      letter-spacing: -.2px;
+    }
+    .section-lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 70ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .card{
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 16px;
+      min-height: 148px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+    }
+    .card h4{
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: .1px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .panel{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 18px;
+    }
+    .panel ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    form{
+      display:grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    label{
+      display:grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(124,58,237,.7);
+      box-shadow: 0 0 0 5px rgba(124,58,237,.18);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .hint{
+      color: var(--subtle);
+      font-size: 12.5px;
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+    .success, .error{
+      display:none;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 14px;
+    }
+    .success{
+      background: rgba(34,197,94,.12);
+      border-color: rgba(34,197,94,.26);
+      color: rgba(255,255,255,.9);
+    }
+    .error{
+      background: rgba(239,68,68,.12);
+      border-color: rgba(239,68,68,.26);
+      color: rgba(255,255,255,.9);
+    }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--subtle);
+      font-size: 13px;
+    }
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Small screens */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .split{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+      nav{ display:none; } /* keep it ultra-simple on mobile */
+      .topbar-inner{ justify-content: space-between; }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior: auto !important; transition: none !important; }
+    }
+    html{ scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body>
+  <!-- Top navigation -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Naar boven">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Unboxed Advisory</span>
+      </a>
+
+      <nav aria-label="Hoofdnavigatie">
+        <a class="navlink" href="#diensten">Diensten</a>
+        <a class="navlink" href="#aanpak">Aanpak</a>
+        <a class="navlink" href="#contact">Contact</a>
+        <a class="navbtn" href="#contact">Vrijblijvend kennismaken</a>
+      </nav>
+
+      <a class="navbtn" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="wrap">
+    <section class="hero" aria-label="Introductie">
+      <div class="hero-grid">
+        <div>
+          <span class="pill"><span class="dot" aria-hidden="true"></span> Digitale productontwikkeling • Platformstrategie • IT-architectuur</span>
+          <h1 class="headline">Digitale producten en platformen voor organisaties met complexe vraagstukken</h1>
+          <p class="subhead">
+            Wij adviseren en ondersteunen organisaties bij het definiëren, ontwerpen en realiseren van digitale producten, diensten en platformen.
+            Met een sterke basis in product management, service design en softwareontwikkeling helpen wij bij digitale transformatie, schaalbaarheid en innovatie —
+            met specifieke aandacht voor complexe en gereguleerde omgevingen.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact" aria-label="Ga naar contact">
+              Vrijblijvend contact
+              <small>↗</small>
+            </a>
+            <a class="btn" href="#diensten" aria-label="Bekijk onze diensten">
+              Bekijk diensten
+              <small>↓</small>
+            </a>
+          </div>
+
+          <p class="hint">
+            Tip: vervang “Unboxed Advisory” en contactgegevens onderaan. De rest kun je later uitbreiden (bijv. publicaties, e‑books of trajecten).
+          </p>
+        </div>
+
+        <aside class="side" aria-label="Kernpunten">
+          <h3>Waar we vaak bij helpen</h3>
+          <p>Van strategie en besluitvorming tot implementatie en borging — met focus op haalbaarheid, governance en samenwerking.</p>
+
+          <div class="kpi" role="list">
+            <div class="box" role="listitem">
+              <p class="num">Strategie → uitvoering</p>
+              <p class="lab">Heldere richting én concrete delivery</p>
+            </div>
+            <div class="box" role="listitem">
+              <p class="num">Complex & gereguleerd</p>
+              <p class="lab">Risico, compliance, auditability</p>
+            </div>
+            <div class="box" role="listitem">
+              <p class="num">Platform & architectuur</p>
+              <p class="lab">Schaalbaar, beheersbaar, veilig</p>
+            </div>
+            <div class="box" role="listitem">
+              <p class="num">Samenwerking</p>
+              <p class="lab">Agile teams, governance, processen</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="diensten" aria-label="Diensten">
+      <h2 class="section-title">Onze diensten</h2>
+      <p class="section-lead">
+        Wij leveren advies, consultancy en interim ondersteuning over de volle breedte van digitale productontwikkeling — van visie en strategie tot ontwerp, realisatie en change.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h4>Digitale productontwikkeling</h4>
+          <p>Ondersteuning bij visie, scope, requirements, roadmap, delivery en adoptie van digitale producten en diensten.</p>
+        </article>
+
+        <article class="card">
+          <h4>Platformstrategie</h4>
+          <p>Keuzes voor platformopzet, capabilities, integraties en lifecycle — afgestemd op businessdoelen en organisatiecontext.</p>
+        </article>
+
+        <article class="card">
+          <h4>IT‑architectuur</h4>
+          <p>Architectuurprincipes en doelarchitecturen die schaalbaar, veilig en beheersbaar zijn (ook in gereguleerde omgevingen).</p>
+        </article>
+
+        <article class="card">
+          <h4>Consultancy & interim management</h4>
+          <p>Interim invulling en advies op product management, service design en softwareontwikkeling, met focus op richting en resultaat.</p>
+        </article>
+
+        <article class="card">
+          <h4>Agile, governance & samenwerking</h4>
+          <p>Verbeteren van processen, governance en samenwerking binnen (Agile) ontwikkelomgevingen, inclusief schaalbaarheid.</p>
+        </article>
+
+        <article class="card">
+          <h4>Analyse & besluitvorming</h4>
+          <p>Risico- en impactanalyses, roadmaps, rapportages en besluitvormingsdocumentatie voor management en stakeholders.</p>
+        </article>
+
+        <article class="card">
+          <h4>Implementaties & verandering</h4>
+          <p>Begeleiden van implementaties en verandertrajecten — van voorbereiding tot borging in teams en organisatie.</p>
+        </article>
+
+        <article class="card">
+          <h4>Nationaal & internationaal</h4>
+          <p>Ondersteuning voor zowel nationale als internationale organisaties, afhankelijk van behoefte en context.</p>
+        </article>
+
+        <article class="card">
+          <h4>Kennis & digitale producten (later)</h4>
+          <p>Deze site kan later worden uitgebreid met e‑books, documenten, templates en trajecten (digitale “webshop”).</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section id="aanpak" aria-label="Aanpak">
+      <h2 class="section-title">Onze aanpak</h2>
+      <p class="section-lead">
+        Onze aanpak is analytisch, pragmatisch en resultaatgericht. We werken nauw samen met management, productteams en stakeholders om complexe vraagstukken te vertalen naar heldere keuzes en realiseerbare oplossingen.
+      </p>
+
+      <div class="split">
+        <div class="panel">
+          <h3 style="margin:0 0 8px; font-size:16px;">Wat u kunt verwachten</h3>
+          <ul>
+            <li>Snelle verkenning van context, doelen, risico’s en afhankelijkheden</li>
+            <li>Heldere scenario’s, afwegingen en besluitvorming</li>
+            <li>Concreet plan: roadmap, governance en realisatie-aanpak</li>
+            <li>Begeleiding in uitvoering: teams, processen en change</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin:0 0 8px; font-size:16px;">Waar we het verschil maken</h3>
+          <ul>
+            <li>Complexe omgevingen met hoge eisen (security, compliance, audit)</li>
+            <li>Platformen en integraties met legacy en meerdere stakeholders</li>
+            <li>Schalen van Agile delivery zonder grip te verliezen</li>
+            <li>Van ‘strategie op papier’ naar ‘werkend in de praktijk’</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" aria-label="Contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-lead">
+        Wilt u verkennen hoe wij kunnen ondersteunen bij een digitaal vraagstuk of veranderinitiatief?
+        Neem vrijblijvend contact op via het formulier.
+      </p>
+
+      <div class="contact">
+        <div class="panel">
+          <h3 style="margin:0 0 8px; font-size:16px;">Contactgegevens</h3>
+          <p style="margin:0; color: var(--muted); line-height:1.65; font-size:14px;">
+            <strong>Unboxed Advisory</strong><br>
+            E-mail: <a href="mailto:info@unboxedadvisory.nl" style="text-decoration: underline;">info@unboxedadvisory.nl</a><br>
+            Telefoon: <span style="color: var(--subtle);">+31 6 12 34 56 78</span><br>
+            Locatie: <span style="color: var(--subtle);">Nederland</span>
+          </p>
+          <p class="hint">
+            Let op: pas dit aan naar jouw echte gegevens. Je kunt ook alleen e‑mail tonen als je dat prettiger vindt.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin:0 0 8px; font-size:16px;">Stuur een bericht</h3>
+
+          <!-- This form works without a backend by opening the visitor's email client (mailto).
+               Later you can swap it to Formspree/Netlify/own backend without changing the layout. -->
+          <div class="success" id="successMsg" role="status" aria-live="polite">Dank! Je e‑mailprogramma is geopend. Als dat niet werkt, stuur dan een mail naar info@unboxedadvisory.nl.</div>
+          <div class="error" id="errorMsg" role="status" aria-live="polite">Oeps, er ging iets mis. Kopieer je bericht en mail het naar info@unboxedadvisory.nl.</div>
+
+          <form id="contactForm" novalidate>
+            <label>
+              Naam
+              <input name="name" type="text" autocomplete="name" placeholder="Uw naam" required />
+            </label>
+
+            <label>
+              E‑mail
+              <input name="email" type="email" autocomplete="email" placeholder="uw@emailadres.nl" required />
+            </label>
+
+            <label>
+              Bericht
+              <textarea name="message" placeholder="Waar kunnen wij mee helpen?" required></textarea>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Verstuur bericht <small>↗</small></button>
+            <p class="hint">
+              Dit formulier gebruikt uw e‑mailprogramma (geen opslag op de website). Liever een “echt” formulier dat altijd werkt? Dat kan later met Formspree of een eigen backend.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer aria-label="Footer">
+      <div class="footer-row">
+        <span>© <span id="year"></span> Unboxed Advisory. Alle rechten voorbehouden.</span>
+        <span>
+          <a href="#top" class="navlink" style="padding:8px 10px; border-radius: 12px; border:1px solid rgba(255,255,255,.10);">
+            Naar boven ↑
+          </a>
+        </span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Minimal JS: year + mailto contact form (works on GitHub Pages with no backend)
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.getElementById("contactForm");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    // Change this to your real mailbox:
+    const TO_EMAIL = "info@unboxedadvisory.nl";
+    const SUBJECT_PREFIX = "Website contact";
+
+    function show(el){
+      el.style.display = "block";
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+    function hide(el){ el.style.display = "none"; }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      hide(successMsg); hide(errorMsg);
+
+      const data = new FormData(form);
+      const name = (data.get("name") || "").toString().trim();
+      const email = (data.get("email") || "").toString().trim();
+      const message = (data.get("message") || "").toString().trim();
+
+      // Basic validation
+      if(!name || !email || !message || !email.includes("@")){
+        show(errorMsg);
+        return;
+      }
+
+      const subject = `${SUBJECT_PREFIX}: ${name}`;
+      const body =
+`Naam: ${name}
+E-mail: ${email}
+
+Bericht:
+${message}
+`;
+
+      // Create mailto link
+      const mailto = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      try{
+        window.location.href = mailto;
+        show(successMsg);
+        form.reset();
+      }catch(err){
+        show(errorMsg);
+      }
+    });
+  </script>
+</body>
+</html>
